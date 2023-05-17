@@ -80,9 +80,7 @@ dataQualityCheck <- function(cdm_dataType,
                             verboseMode = verboseMode,
                             writeToTable = writeToTable,
                             checkLevels = checkLevels,
-                            checkNames = checkNames,
-                            logger = dqdDataBaseManager$logger,
-                            interruptor = dqdDataBaseManager$interruptor)
+                            checkNames = checkNames)
   jsonResult <- jsonlite::toJSON(result)
   print("Data Quality Check process finished!")
 

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataQualityDashboard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.0</span>
       </span>
     </div>
 
@@ -50,22 +50,30 @@
       <a href="../articles/CheckTypeDescriptions.html">Data Quality Check Type Definitions</a>
     </li>
     <li>
-      <a href="../articles/DqdForCohorts.html">Running the DQD on a Cohort</a>
+        <a href="../articles/DqdForCohorts.html">Running the DQD on a Cohort</a>
     </li>
-    <li>
-      <a href="../articles/Thresholds.html">Failure Thresholds and How to Change Them</a>
-    </li>
-  </ul></li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+      <li>
+          <a href="../articles/Thresholds.html">Failure Thresholds and How to Change Them</a>
+      </li>
+  </ul>
 </li>
-      </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/OHDSI/DataQualityDashboard/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul></div><!--/.nav-collapse -->
+          <li>
+              <a href="../news/index.html">Changelog</a>
+          </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="https://ohdsi.github.io/Hades" class="external-link"><img
+                        src='https://ohdsi.github.io/Hades/images/hadesMini.png' width=80 height=17
+                        style='vertical-align: top;'></a>
+            </li>
+            <li>
+                <a href="https://github.com/OHDSI/DataQualityDashboard/" class="external-link">
+                    <span class="fab fa-github fa-lg"></span>
+
+                </a>
+            </li>
+        </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -94,6 +102,7 @@
 <span>  <span class="va">cdmDatabaseSchema</span>,</span>
 <span>  <span class="va">vocabDatabaseSchema</span>,</span>
 <span>  <span class="va">cohortDatabaseSchema</span>,</span>
+<span>  <span class="va">cohortTableName</span>,</span>
 <span>  <span class="va">cohortDefinitionId</span>,</span>
 <span>  <span class="va">outputFolder</span>,</span>
 <span>  <span class="va">sqlOnly</span></span>
@@ -126,23 +135,29 @@
 <dd><p>The fully qualified database name of the CDM schema</p></dd>
 
 
-<dt>vocabDatabaseSchema</dt>
-<dd><p>The fully qualified database name of the vocabulary schema (default is to set it as the cdmDatabaseSchema)</p></dd>
+        <dt>vocabDatabaseSchema</dt>
+        <dd><p>The fully qualified database name of the vocabulary schema (default is to set it as the
+            cdmDatabaseSchema)</p></dd>
 
 
-<dt>cohortDatabaseSchema</dt>
-<dd><p>The schema where the cohort table is located.</p></dd>
+        <dt>cohortDatabaseSchema</dt>
+        <dd><p>The schema where the cohort table is located.</p></dd>
 
 
-<dt>cohortDefinitionId</dt>
-<dd><p>The cohort definition id for the cohort you wish to run the DQD on. The package assumes a standard OHDSI cohort table called 'Cohort'</p></dd>
+        <dt>cohortTableName</dt>
+        <dd><p>The name of the cohort table.</p></dd>
 
 
-<dt>outputFolder</dt>
-<dd><p>The folder to output logs and SQL files to</p></dd>
+        <dt>cohortDefinitionId</dt>
+        <dd><p>The cohort definition id for the cohort you wish to run the DQD on. The package assumes a standard OHDSI
+            cohort table called 'Cohort'</p></dd>
 
 
-<dt>sqlOnly</dt>
+        <dt>outputFolder</dt>
+        <dd><p>The folder to output logs and SQL files to</p></dd>
+
+
+        <dt>sqlOnly</dt>
 <dd><p>Should the SQLs be executed (FALSE) or just returned (TRUE)?</p></dd>
 
 
@@ -158,13 +173,17 @@
 </div>
 
 
-      <footer><div class="copyright">
-  <p></p><p>Developed by Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank DeFalco, Pavel Grafkin.</p>
-</div>
+      <footer>
+          <div class="copyright">
+              <p></p>
+              <p>Developed by Katy Sadowski, Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank
+                  DeFalco, Pavel Grafkin.</p>
+          </div>
 
-<div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
-</div>
+          <div class="pkgdown">
+              <p></p>
+              <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+          </div>
 
       </footer></div>
 

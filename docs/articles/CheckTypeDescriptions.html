@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataQualityDashboard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.0</span>
       </span>
     </div>
 
@@ -80,6 +80,11 @@
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
+    <li>
+        <a href="https://ohdsi.github.io/Hades" class="external-link"><img
+                src='https://ohdsi.github.io/Hades/images/hadesMini.png' width=80 height=17
+                style='vertical-align: top;'></a>
+    </li>
 <li>
   <a href="https://github.com/OHDSI/DataQualityDashboard/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -102,8 +107,8 @@
       <h1 data-toc-skip>Data Quality Check Type Definitions</h1>
                         <h4 data-toc-skip class="author">Clair
 Blacketer</h4>
-            
-            <h4 data-toc-skip class="date">2022-10-12</h4>
+
+        <h4 data-toc-skip class="date">2023-05-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/OHDSI/DataQualityDashboard/blob/HEAD/vignettes/CheckTypeDescriptions.rmd" class="external-link"><code>vignettes/CheckTypeDescriptions.rmd</code></a></small>
       <div class="hidden name"><code>CheckTypeDescriptions.rmd</code></div>
@@ -382,8 +387,9 @@ to 0. This should be used in conjunction with the <a href="#standardConceptRecor
 check to identify any mapping issues in the ETL.</p>
 </div>
 <div class="section level3">
-<h3 id="plausiblevaluelow">plausibleValueLow<a class="anchor" aria-label="anchor" href="#plausiblevaluelow"></a>
-</h3>
+    <h3 id="plausiblevaluelow---for-fields">plausibleValueLow - (for Fields)<a class="anchor" aria-label="anchor"
+                                                                               href="#plausiblevaluelow---for-fields"></a>
+    </h3>
 <p><strong>Name</strong>: plausibleValueLow <br><strong>Level</strong>:
 Field check <br><strong>Context</strong>: Verification
 <br><strong>Category</strong>: Plausibility
@@ -400,8 +406,9 @@ have an implausibly low value in the year_of_birth field of the PERSON
 table.</p>
 </div>
 <div class="section level3">
-<h3 id="plausiblevaluehigh">plausibleValueHigh<a class="anchor" aria-label="anchor" href="#plausiblevaluehigh"></a>
-</h3>
+    <h3 id="plausiblevaluehigh---for-fields">plausibleValueHigh - (for Fields)<a class="anchor" aria-label="anchor"
+                                                                                 href="#plausiblevaluehigh---for-fields"></a>
+    </h3>
 <p><strong>Name</strong>: plausibleValueHigh <br><strong>Level</strong>:
 Field check <br><strong>Context</strong>: Verification
 <br><strong>Category</strong>: Plausibility
@@ -451,8 +458,9 @@ specified dates should occur during a person’s lifetime, like drug
 exposures, etc.</p>
 </div>
 <div class="section level3">
-<h3 id="plausiblevaluelow-1">plausibleValueLow<a class="anchor" aria-label="anchor" href="#plausiblevaluelow-1"></a>
-</h3>
+    <h3 id="plausiblevaluelow---for-concept-unit-combinations">plausibleValueLow - (for Concept + Unit combinations)<a
+            class="anchor" aria-label="anchor" href="#plausiblevaluelow---for-concept-unit-combinations"></a>
+    </h3>
 <p><strong>Name</strong>: plausibleValueLow <br><strong>Level</strong>:
 Concept check <br><strong>Context</strong>: Verification
 <br><strong>Category</strong>: Plausibility
@@ -463,21 +471,22 @@ UNIT_CONCEPT_ID <strong>unitConceptId</strong>
 (<strong>unitConceptName</strong>), the number and percent of records
 that have a value less than <strong>plausibleValueLow</strong>.</p>
 <p><strong>Definition</strong>: This check will count the number of
-records that have a value in the specified field with the specified
-concept_id and unit_concept_id that is lower than some value. This is
-the concept-level version of this check so it is concept specific and
-therefore the denominator will only be the records with the specified
-concept and unit. For example, it will count the number of records that
-have an implausibly low value in the value_as_number field of the
-MEASUREMENT table where MEASUREMENT_CONCEPT_ID = 2212241 (Calcium;
-total) and UNIT_CONCEPT_ID = 8840 (milligram per deciliter). These
-implausible values were determined by a team of physicans and are meant
-to be <em>biologically implausible</em>, not just lower than the normal
+    records that have a value in the specified field with the specified
+    concept_id and unit_concept_id that is lower than some value. This is
+    the concept-level version of this check so it is concept specific and
+    therefore the denominator will only be the records with the specified
+    concept and unit. For example, it will count the number of records that
+    have an implausibly low value in the value_as_number field of the
+    MEASUREMENT table where MEASUREMENT_CONCEPT_ID = 2212241 (Calcium;
+    total) and UNIT_CONCEPT_ID = 8840 (milligram per deciliter). These
+    implausible values were determined by a team of physicians and are meant
+    to be <em>biologically implausible</em>, not just lower than the normal
 value.</p>
 </div>
 <div class="section level3">
-<h3 id="plausiblevaluehigh-1">plausibleValueHigh<a class="anchor" aria-label="anchor" href="#plausiblevaluehigh-1"></a>
-</h3>
+    <h3 id="plausiblevaluehigh---for-concept-unit-combinations">plausibleValueHigh - (for Concept + Unit combinations)<a
+            class="anchor" aria-label="anchor" href="#plausiblevaluehigh---for-concept-unit-combinations"></a>
+    </h3>
 <p><strong>Name</strong>: plausibleValueHigh <br><strong>Level</strong>:
 Concept check <br><strong>Context</strong>: Verification
 <br><strong>Category</strong>: Plausibility
@@ -488,16 +497,16 @@ UNIT_CONCEPT_ID <strong>unitConceptId</strong>
 (<strong>unitConceptName</strong>), the number and percent of records
 that have a value higher than <strong>plausibleValueHigh</strong>.</p>
 <p><strong>Definition</strong>: This check will count the number of
-records that have a value in the specified field with the specified
-concept_id and unit_concept_id that is higher than some value. This is
-the concept-level version of this check so it is concept specific and
-therefore the denominator will only be the records with the specified
-concept and unit. For example, it will count the number of records that
-have an implausibly high value in the value_as_number field of the
-MEASUREMENT table where MEASUREMENT_CONCEPT_ID = 2212241 (Calcium;
-total) and UNIT_CONCEPT_ID = 8840 (milligram per deciliter). These
-implausible values were determined by a team of physicans and are meant
-to be <em>biologically implausible</em>, not just higher than the normal
+    records that have a value in the specified field with the specified
+    concept_id and unit_concept_id that is higher than some value. This is
+    the concept-level version of this check so it is concept specific and
+    therefore the denominator will only be the records with the specified
+    concept and unit. For example, it will count the number of records that
+    have an implausibly high value in the value_as_number field of the
+    MEASUREMENT table where MEASUREMENT_CONCEPT_ID = 2212241 (Calcium;
+    total) and UNIT_CONCEPT_ID = 8840 (milligram per deciliter). These
+    implausible values were determined by a team of physicians and are meant
+    to be <em>biologically implausible</em>, not just higher than the normal
 value.</p>
 </div>
 <div class="section level3">
@@ -507,17 +516,41 @@ value.</p>
 Concept check <br><strong>Context</strong>: Validation
 <br><strong>Category</strong>: Plausibility
 <br><strong>Subcategory</strong>: Atemporal</p>
-<p><strong>Description</strong>: For a CONCEPT_ID
-<strong>conceptId</strong> (<strong>conceptName</strong>), the number
-and percent of records associated with patients with an implausible
-gender (correct gender = <strong>plausibleGender</strong>).</p>
-<p><strong>Definition</strong>: This check will count the number of
-records that have an incorrect gender associated with a gender-specific
-concept_id. This check is concept specific and therefore the denominator
-will only be the records with the specified concept. For example it will
-count the number of records of prostate cancer that are associated with
-female persons.</p>
+    <p><strong>Description</strong>: For a CONCEPT_ID
+        <strong>conceptId</strong> (<strong>conceptName</strong>), the number
+        and percent of records associated with patients with an implausible
+        gender (correct gender = <strong>plausibleGender</strong>).</p>
+    <p><strong>Definition</strong>: This check will count the number of
+        records that have an incorrect gender associated with a gender-specific
+        concept_id. This check is concept specific and therefore the denominator
+        will only be the records with the specified concept. For example it will
+        count the number of records of prostate cancer that are associated with
+        female persons.</p>
 </div>
+    <div class="section level3">
+        <h3 id="plausibleunitconceptids">plausibleUnitConceptIds<a class="anchor" aria-label="anchor"
+                                                                   href="#plausibleunitconceptids"></a>
+        </h3>
+        <p><strong>Name</strong>: plausibleUnitConceptIds
+            <br><strong>Level</strong>: Concept check <br><strong>Context</strong>:
+            Verification <br><strong>Category</strong>: Plausibility
+            <br><strong>Subcategory</strong>: Atemporal</p>
+        <p><strong>Description</strong>: The number and percent of records for a
+            given CONCEPT_ID <strong>conceptId</strong>
+            (<strong>conceptName</strong>) with implausible units (i.e.
+            UNIT_CONCEPT_ID NOT IN (<strong>plausibleUnitConceptIds</strong>))</p>
+        <p><strong>Definition</strong>: This check will count the number of
+            records for a given concept that do not use one of the allowable units,
+            which is represented in the csv file as a quoted comma-separated list of
+            unit_concept_ids. If no units are specified for
+            <strong>plausibleUnitConceptIds</strong>, this check will count the
+            number of records that have non-NULL units. This check is concept
+            specific and therefore the denominator will only be the records with the
+            specified concept. For example it will count the number of records or
+            <strong>Glomerular Filtration Rate</strong> (CONCEPT_ID = 3030354) that
+            do not use unit <strong>mL/min/1.73.m2</strong> (UNIT_CONCEPT_ID =
+            9117).</p>
+    </div>
 </div>
   </div>
 
@@ -533,12 +566,13 @@ female persons.</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank DeFalco, Pavel Grafkin.</p>
+          <p>Developed by Katy Sadowski, Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank DeFalco,
+              Pavel Grafkin.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+    <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

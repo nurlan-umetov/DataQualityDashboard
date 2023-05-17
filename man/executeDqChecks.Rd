@@ -12,7 +12,7 @@ executeDqChecks(
   cdmSourceName,
   numThreads = 1,
   sqlOnly = FALSE,
-  outputFolder = "output",
+  outputFolder,
   outputFile = "",
   verboseMode = FALSE,
   writeToTable = TRUE,
@@ -23,6 +23,7 @@ executeDqChecks(
   checkNames = c(),
   cohortDefinitionId = c(),
   cohortDatabaseSchema = resultsDatabaseSchema,
+  cohortTableName = "cohort",
   tablesToExclude = c("CONCEPT", "VOCABULARY", "CONCEPT_ANCESTOR",
     "CONCEPT_RELATIONSHIP", "CONCEPT_CLASS", "CONCEPT_SYNONYM", "RELATIONSHIP", "DOMAIN"),
   cdmVersion = "5.3",
@@ -46,29 +47,30 @@ executeDqChecks(
 
 \item{sqlOnly}{Should the SQLs be executed (FALSE) or just returned (TRUE)?}
 
-\item{outputFolder}{The folder to output logs and SQL files to}
+\item{outputFolder}{The folder to output logs, SQL files, and JSON results file to}
 
 \item{outputFile}{(OPTIONAL) File to write results JSON object}
 
-\item{verboseMode}{Boolean to determine if the console will show all execution steps. Default = FALSE}
+\item{verboseMode}{Boolean to determine if the console will show all execution steps. Default is FALSE}
 
-\item{writeToTable}{Boolean to indicate if the check results will be written to the dqdashboard_results table}
+\item{writeToTable}{Boolean to indicate if the check results will be written to the dqdashboard_results table in the resultsDatabaseSchema. Default is TRUE}
 
 \item{writeTableName}{The name of the results table. Defaults to `dqdashboard_results`.}
 
-\item{writeToCsv}{Boolean to indicate if the check results will be written to a csv file}
+\item{writeToCsv}{Boolean to indicate if the check results will be written to a csv file. Default is FALSE}
 
-\item{csvFile}{(OPTIONAL) CSV file to write results
-in the resultsDatabaseSchema. Default is TRUE.}
+\item{csvFile}{(OPTIONAL) CSV file to write results}
 
 \item{checkLevels}{Choose which DQ check levels to execute. Default is all 3 (TABLE, FIELD, CONCEPT)}
 
-\item{checkNames}{(OPTIONAL) Choose which check names to execute. Names can be found in inst/csv/OMOP_CDM_v[cdmVersion]_Check_Desciptions.csv. Note that "cdmTable", "cdmField" and "measureValueCompleteness" are always executed.}
+\item{checkNames}{(OPTIONAL) Choose which check names to execute. Names can be found in inst/csv/OMOP_CDM_v[cdmVersion]_Check_Descriptions.csv. Note that "cdmTable", "cdmField" and "measureValueCompleteness" are always executed.}
 
-\item{cohortDefinitionId}{The cohort definition id for the cohort you wish to run the DQD on. The package assumes a standard OHDSI cohort table called 'Cohort' 
+\item{cohortDefinitionId}{The cohort definition id for the cohort you wish to run the DQD on. The package assumes a standard OHDSI cohort table
 with the fields cohort_definition_id and subject_id.}
 
 \item{cohortDatabaseSchema}{The schema where the cohort table is located.}
+
+\item{cohortTableName}{The name of the cohort table. Defaults to `cohort`.}
 
 \item{tablesToExclude}{(OPTIONAL) Choose which CDM tables to exclude from the execution.}
 

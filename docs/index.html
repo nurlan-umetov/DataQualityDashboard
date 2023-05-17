@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">DataQualityDashboard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.0</span>
       </span>
     </div>
 
@@ -80,6 +80,11 @@
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
+    <li>
+        <a href="https://ohdsi.github.io/Hades" class="external-link"><img
+                src='https://ohdsi.github.io/Hades/images/hadesMini.png' width=80 height=17
+                style='vertical-align: top;'></a>
+    </li>
 <li>
   <a href="https://github.com/OHDSI/DataQualityDashboard/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -104,6 +109,7 @@
 </h1></div>
 <!-- badges: start -->
 
+    <p>DataQualityDashboard is part of <a href="https://ohdsi.github.io/Hades" class="external-link">HADES</a>.</p>
 <p>The goal of the Data Quality Dashboard (DQD) project is to design and develop an open-source tool to expose and evaluate observational data quality.</p>
 </div>
 <div class="section level1">
@@ -168,7 +174,10 @@
 <tr class="even">
 <td>source_description</td>
 <td>The description of the CDM instance.</td>
-<td>Add notes, caveats, special characteristics about the source data that would not be assumed from the general descriptive name.  This description intended to help analysists determine if the data is suitable for the problem they are studying.</td>
+    <td>Add notes, caveats, special characteristics about the source data that would not be assumed from the general
+        descriptive name.  This description intended to help analysts determine if the data is suitable for the problem
+        they are studying.
+    </td>
 </tr>
 <tr class="odd">
 <td>source_documentation_reference</td>
@@ -208,39 +217,79 @@
 </tbody>
 </table>
 </div>
-<div class="section level1">
-<h1 id="technology">Technology<a class="anchor" aria-label="anchor" href="#technology"></a>
-</h1>
-<p>DataQualityDashboard is an R package</p>
-</div>
-<div class="section level1">
-<h1 id="system-requirements">System Requirements<a class="anchor" aria-label="anchor" href="#system-requirements"></a>
-</h1>
-<p>Requires R (version 3.2.2 or higher). Requires <a href="https://github.com/OHDSI/DatabaseConnector" class="external-link">DatabaseConnector</a> and <a href="https://github.com/OHDSI/SqlRender" class="external-link">SqlRender</a>.</p>
-</div>
-<div class="section level1">
-<h1 id="support">Support<a class="anchor" aria-label="anchor" href="#support"></a>
-</h1>
-<ul>
-<li>Developer questions/comments/feedback: <a href="http://forums.ohdsi.org/c/developers" class="external-link">OHDSI Forum</a>
-</li>
-<li>We use the <a href="https://github.com/OHDSI/DataQualityDashboard/issues" class="external-link">GitHub issue tracker</a> for all bugs/issues/enhancements</li>
-</ul>
-</div>
-<div class="section level1">
-<h1 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
-</h1>
-<p>DataQualityDashboard is licensed under Apache License 2.0</p>
-<div class="section level3">
-<h3 id="development-status">Development status<a class="anchor" aria-label="anchor" href="#development-status"></a>
-</h3>
-<p>V2.0 ready for use.</p>
-</div>
-</div>
-<div class="section level1">
-<h1 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
-</h1>
-<p>This project is supported in part through the National Science Foundation grant IIS 1251151.</p>
+      <div class="section level1">
+          <h1 id="technology">Technology<a class="anchor" aria-label="anchor" href="#technology"></a>
+          </h1>
+          <p>DataQualityDashboard is an R package</p>
+      </div>
+      <div class="section level1">
+          <h1 id="system-requirements">System Requirements<a class="anchor" aria-label="anchor"
+                                                             href="#system-requirements"></a>
+          </h1>
+          <p>Requires R (version 3.2.2 or higher). Requires <a href="https://github.com/OHDSI/DatabaseConnector"
+                                                               class="external-link">DatabaseConnector</a> (version
+              2.0.2 or higher).</p>
+      </div>
+      <div class="section level1">
+          <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+          </h1>
+          <ol style="list-style-type: decimal">
+              <li><p>See the instructions <a href="https://ohdsi.github.io/Hades/rSetup.html"
+                                             class="external-link">here</a> for configuring your R environment,
+                  including RTools and Java.</p></li>
+              <li><p>In R, use the following commands to download and install DataQualityDashboard:</p></li>
+          </ol>
+          <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html"
+                                                     class="external-link">install.packages</a></span><span
+        class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a
+        href="https://remotes.r-lib.org/reference/install_github.html"
+        class="external-link">install_github</a></span><span class="op">(</span><span class="st">"OHDSI/DataQualityDashboard"</span><span
+        class="op">)</span></span></code></pre>
+          </div>
+      </div>
+      <div class="section level1">
+          <h1 id="user-documentation">User Documentation<a class="anchor" aria-label="anchor"
+                                                           href="#user-documentation"></a>
+          </h1>
+          <p>Documentation can be found on the <a href="https://ohdsi.github.io/DataQualityDashboard/index.html"
+                                                  class="external-link">package website</a>.</p>
+      </div>
+      <div class="section level1">
+          <h1 id="support">Support<a class="anchor" aria-label="anchor" href="#support"></a>
+          </h1>
+          <ul>
+              <li>Developer questions/comments/feedback: <a href="http://forums.ohdsi.org/c/developers"
+                                                            class="external-link">OHDSI Forum</a>
+              </li>
+              <li>We use the <a href="https://github.com/OHDSI/DataQualityDashboard/issues" class="external-link">GitHub
+                  issue tracker</a> for all bugs/issues/enhancements
+              </li>
+          </ul>
+      </div>
+      <div class="section level1">
+          <h1 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+          </h1>
+          <p>DataQualityDashboard is licensed under Apache License 2.0</p>
+      </div>
+      <div class="section level1">
+          <h1 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
+          </h1>
+          <p>DataQualityDashboard is being developed in R Studio.</p>
+          <div class="section level3">
+              <h3 id="development-status">Development status<a class="anchor" aria-label="anchor"
+                                                               href="#development-status"></a>
+              </h3>
+              <p>V2.0 ready for use.</p>
+          </div>
+      </div>
+      <div class="section level1">
+          <h1 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+          </h1>
+          <ul>
+              <li>This project is supported in part through the National Science Foundation grant IIS 1251151.</li>
+          </ul>
 <p><b id="f1">1</b> Kahn, M.G., et al., A Harmonized Data Quality Assessment Terminology and Framework for the Secondary Use of Electronic Health Record Data. EGEMS (Wash DC), 2016. 4(1): p. 1244. <a href="#kahn">↩︎</a></p>
 </div>
 
@@ -274,21 +323,25 @@
 
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
-<ul class="list-unstyled">
-<li>Clair Blacketer <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Ajit Londhe <br><small class="roles"> Author </small>  </li>
-<li>Anthony Sena <br><small class="roles"> Author </small>  </li>
-<li>Anthony Molinaro <br><small class="roles"> Author </small>  </li>
-<li>Frank DeFalco <br><small class="roles"> Author </small>  </li>
-<li>Pavel Grafkin <br><small class="roles"> Author </small>  </li>
-</ul>
+    <ul class="list-unstyled">
+        <li>Katy Sadowski <br><small class="roles"> Author, maintainer </small></li>
+        <li>Clair Blacketer <br><small class="roles"> Author </small></li>
+        <li>Ajit Londhe <br><small class="roles"> Author </small></li>
+        <li>Anthony Sena <br><small class="roles"> Author </small></li>
+        <li>Anthony Molinaro <br><small class="roles"> Author </small></li>
+        <li>Frank DeFalco <br><small class="roles"> Author </small></li>
+        <li>Pavel Grafkin <br><small class="roles"> Author </small></li>
+    </ul>
 </div>
 
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://codecov.io/github/OHDSI/DataQualityDashboard?branch=main" class="external-link"><img src="https://codecov.io/github/OHDSI/DataQualityDashboard/coverage.svg?branch=main" alt="codecov.io"></a></li>
-<li><a href="https://github.com/OHDSI/DataQualityDashboard/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/OHDSI/DataQualityDashboard/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+    <li><a href="https://github.com/OHDSI/DataQualityDashboard/actions?query=workflow%3AR-CMD-check"
+           class="external-link"><img
+            src="https://github.com/OHDSI/DataQualityDashboard/workflows/R-CMD-check/badge.svg" alt="Build Status"></a>
+    </li>
 </ul>
 </div>
 
@@ -298,12 +351,13 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank DeFalco, Pavel Grafkin.</p>
+          <p>Developed by Katy Sadowski, Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank DeFalco,
+              Pavel Grafkin.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+    <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

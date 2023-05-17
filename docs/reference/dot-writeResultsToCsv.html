@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataQualityDashboard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.0</span>
       </span>
     </div>
 
@@ -50,22 +50,30 @@
       <a href="../articles/CheckTypeDescriptions.html">Data Quality Check Type Definitions</a>
     </li>
     <li>
-      <a href="../articles/DqdForCohorts.html">Running the DQD on a Cohort</a>
+        <a href="../articles/DqdForCohorts.html">Running the DQD on a Cohort</a>
     </li>
-    <li>
-      <a href="../articles/Thresholds.html">Failure Thresholds and How to Change Them</a>
-    </li>
-  </ul></li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+      <li>
+          <a href="../articles/Thresholds.html">Failure Thresholds and How to Change Them</a>
+      </li>
+  </ul>
 </li>
-      </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/OHDSI/DataQualityDashboard/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul></div><!--/.nav-collapse -->
+          <li>
+              <a href="../news/index.html">Changelog</a>
+          </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="https://ohdsi.github.io/Hades" class="external-link"><img
+                        src='https://ohdsi.github.io/Hades/images/hadesMini.png' width=80 height=17
+                        style='vertical-align: top;'></a>
+            </li>
+            <li>
+                <a href="https://github.com/OHDSI/DataQualityDashboard/" class="external-link">
+                    <span class="fab fa-github fa-lg"></span>
+
+                </a>
+            </li>
+        </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -84,15 +92,24 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.writeResultsToCsv</span><span class="op">(</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.writeResultsToCsv</span><span
+            class="op">(</span></span>
 <span>  <span class="va">checkResults</span>,</span>
 <span>  <span class="va">csvPath</span>,</span>
-<span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"checkId"</span>, <span class="st">"FAILED"</span>, <span class="st">"PASSED"</span>, <span class="st">"IS_ERROR"</span>, <span class="st">"NOT_APPLICABLE"</span>, <span class="st">"CHECK_NAME"</span>,</span>
-<span>    <span class="st">"CHECK_DESCRIPTION"</span>, <span class="st">"THRESHOLD_VALUE"</span>, <span class="st">"NOTES_VALUE"</span>, <span class="st">"CHECK_LEVEL"</span>, <span class="st">"CATEGORY"</span>,</span>
-<span>    <span class="st">"SUBCATEGORY"</span>, <span class="st">"CONTEXT"</span>, <span class="st">"CHECK_LEVEL"</span>, <span class="st">"CDM_TABLE_NAME"</span>, <span class="st">"CDM_FIELD_NAME"</span>,</span>
-<span>    <span class="st">"CONCEPT_ID"</span>, <span class="st">"UNIT_CONCEPT_ID"</span>, <span class="st">"NUM_VIOLATED_ROWS"</span>, <span class="st">"PCT_VIOLATED_ROWS"</span>,</span>
-<span>    <span class="st">"NUM_DENOMINATOR_ROWS"</span>, <span class="st">"EXECUTION_TIME"</span>, <span class="st">"NOT_APPLICABLE_REASON"</span>, <span class="st">"ERROR"</span>,</span>
-<span>    <span class="st">"QUERY_TEXT"</span><span class="op">)</span>,</span>
+<span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html"
+                                                              class="external-link">c</a></span><span
+        class="op">(</span><span class="st">"checkId"</span>, <span class="st">"failed"</span>, <span class="st">"passed"</span>, <span
+        class="st">"isError"</span>, <span class="st">"notApplicable"</span>, <span
+        class="st">"checkName"</span>,</span>
+<span>    <span class="st">"checkDescription"</span>, <span class="st">"thresholdValue"</span>, <span class="st">"notesValue"</span>, <span
+        class="st">"checkLevel"</span>, <span class="st">"category"</span>,</span>
+<span>    <span class="st">"subcategory"</span>, <span class="st">"context"</span>, <span class="st">"checkLevel"</span>, <span
+        class="st">"cdmTableName"</span>, <span class="st">"cdmFieldName"</span>, <span
+        class="st">"conceptId"</span>,</span>
+<span>    <span class="st">"unitConceptId"</span>, <span class="st">"numViolatedRows"</span>, <span class="st">"pctViolatedRows"</span>, <span
+        class="st">"numDenominatorRows"</span>,</span>
+<span>    <span class="st">"executionTime"</span>, <span class="st">"notApplicableReason"</span>, <span class="st">"error"</span>, <span
+        class="st">"queryText"</span><span class="op">)</span>,</span>
 <span>  delimiter <span class="op">=</span> <span class="st">","</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -123,13 +140,17 @@
 </div>
 
 
-      <footer><div class="copyright">
-  <p></p><p>Developed by Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank DeFalco, Pavel Grafkin.</p>
-</div>
+      <footer>
+          <div class="copyright">
+              <p></p>
+              <p>Developed by Katy Sadowski, Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank
+                  DeFalco, Pavel Grafkin.</p>
+          </div>
 
-<div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
-</div>
+          <div class="pkgdown">
+              <p></p>
+              <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+          </div>
 
       </footer></div>
 

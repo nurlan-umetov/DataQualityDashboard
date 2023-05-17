@@ -1,13 +1,29 @@
+# Copyright 2023 Observational Health Data Sciences and Informatics
+#
+# This file is part of DataQualityDashboard
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 library(DataQualityDashboard)
 library(DatabaseConnector)
 
 # fill out the connection details -----------------------------------------------------------------------
 connectionDetails <- DatabaseConnector::createConnectionDetails(
-  dbms = "", 
-  user = "", 
-  password = "", 
-  server = "", 
-  port = "", 
+  dbms = "",
+  user = "",
+  password = "",
+  server = "",
+  port = "",
   extraSettings = "",
   pathToDriver = ""
 )
@@ -50,38 +66,46 @@ csvFile <- "" # only needed if writeToCsv is set to TRUE
 checkLevels <- c("TABLE", "FIELD", "CONCEPT")
 
 # which DQ checks to run? ------------------------------------
-checkNames <- c() #Names can be found in inst/csv/OMOP_CDM_v5.3.1_Check_Desciptions.csv
+checkNames <- c() # Names can be found in inst/csv/OMOP_CDM_v5.3.1_Check_Desciptions.csv
 
 # which CDM tables to exclude? ------------------------------------
-tablesToExclude <- c() 
+tablesToExclude <- c()
 
 # run the job --------------------------------------------------------------------------------------
-DataQualityDashboard::executeDqChecks(connectionDetails = connectionDetails, 
-                              cdmDatabaseSchema = cdmDatabaseSchema, 
-                              resultsDatabaseSchema = resultsDatabaseSchema,
-                              cdmSourceName = cdmSourceName, 
-                              numThreads = numThreads,
-                              sqlOnly = sqlOnly, 
-                              outputFolder = outputFolder,
-                              verboseMode = verboseMode,
-                              writeToTable = writeToTable,
-                              writeToCsv = writeToCsv,
-                              csvFile = csvFile,
-                              checkLevels = checkLevels,
-                              tablesToExclude = tablesToExclude,
-                              checkNames = checkNames)
+DataQualityDashboard::executeDqChecks(
+  connectionDetails = connectionDetails,
+  cdmDatabaseSchema = cdmDatabaseSchema,
+  resultsDatabaseSchema = resultsDatabaseSchema,
+  cdmSourceName = cdmSourceName,
+  cdmVersion = cdmVersion
+  numThreads = numThreads,
+  sqlOnly = sqlOnly, 
+  outputFolder = outputFolder,
+  outputFile = outputFile,
+  verboseMode = verboseMode,
+  writeToTable = writeToTable,
+  writeToCsv = writeToCsv,
+  csvFile = csvFile,
+  checkLevels = checkLevels,
+  tablesToExclude = tablesToExclude,
+  checkNames = checkNames
+)
 
 # inspect logs ----------------------------------------------------------------------------
-ParallelLogger::launchLogViewer(logFileName = file.path(outputFolder, 
-                                                        sprintf("log_DqDashboard_%s.txt", cdmSourceName)))
+ParallelLogger::launchLogViewer(
+  logFileName = file.path(outputFolder,
+  sprintf("log_DqDashboard_%s.txt", cdmSourceName))
+)
 
-# View the Data Quality Dashboard using the integrated shiny application
+# View the Data Quality Dashboard using the integrated shiny application ------------------------------------
 DataQualityDashboard::viewDqDashboard(
-  jsonPath = file.path(getwd(), outputFolder, outputFile))
+  jsonPath = file.path(getwd(), outputFolder, outputFile)
 )
 
 # (OPTIONAL) if you want to write the JSON file to the results table separately -----------------------------
 jsonFilePath <- "" # put the path to the outputted JSON file
-DataQualityDashboard::writeJsonResultsToTable(connectionDetails = connectionDetails, 
-                                              resultsDatabaseSchema = resultsDatabaseSchema, 
-                                              jsonFilePath = jsonFilePath)
+DataQualityDashboard::writeJsonResultsToTable(
+  connectionDetails = connectionDetails,
+  resultsDatabaseSchema = resultsDatabaseSchema,
+  jsonFilePath = jsonFilePath
+)

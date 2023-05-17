@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataQualityDashboard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.0</span>
       </span>
     </div>
 
@@ -50,22 +50,30 @@
       <a href="../articles/CheckTypeDescriptions.html">Data Quality Check Type Definitions</a>
     </li>
     <li>
-      <a href="../articles/DqdForCohorts.html">Running the DQD on a Cohort</a>
+        <a href="../articles/DqdForCohorts.html">Running the DQD on a Cohort</a>
     </li>
-    <li>
-      <a href="../articles/Thresholds.html">Failure Thresholds and How to Change Them</a>
-    </li>
-  </ul></li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+      <li>
+          <a href="../articles/Thresholds.html">Failure Thresholds and How to Change Them</a>
+      </li>
+  </ul>
 </li>
-      </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/OHDSI/DataQualityDashboard/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul></div><!--/.nav-collapse -->
+          <li>
+              <a href="../news/index.html">Changelog</a>
+          </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="https://ohdsi.github.io/Hades" class="external-link"><img
+                        src='https://ohdsi.github.io/Hades/images/hadesMini.png' width=80 height=17
+                        style='vertical-align: top;'></a>
+            </li>
+            <li>
+                <a href="https://github.com/OHDSI/DataQualityDashboard/" class="external-link">
+                    <span class="fab fa-github fa-lg"></span>
+
+                </a>
+            </li>
+        </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -92,7 +100,7 @@
 <span>  <span class="va">cdmSourceName</span>,</span>
 <span>  numThreads <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  sqlOnly <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  outputFolder <span class="op">=</span> <span class="st">"output"</span>,</span>
+<span>  <span class="va">outputFolder</span>,</span>
 <span>  outputFile <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  verboseMode <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  writeToTable <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -103,6 +111,7 @@
 <span>  checkNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  cohortDefinitionId <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  cohortDatabaseSchema <span class="op">=</span> <span class="va">resultsDatabaseSchema</span>,</span>
+<span>  cohortTableName <span class="op">=</span> <span class="st">"cohort"</span>,</span>
 <span>  tablesToExclude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CONCEPT"</span>, <span class="st">"VOCABULARY"</span>, <span class="st">"CONCEPT_ANCESTOR"</span>,</span>
 <span>    <span class="st">"CONCEPT_RELATIONSHIP"</span>, <span class="st">"CONCEPT_CLASS"</span>, <span class="st">"CONCEPT_SYNONYM"</span>, <span class="st">"RELATIONSHIP"</span>, <span class="st">"DOMAIN"</span><span class="op">)</span>,</span>
 <span>  cdmVersion <span class="op">=</span> <span class="st">"5.3"</span>,</span>
@@ -143,7 +152,7 @@
 
 
 <dt>outputFolder</dt>
-<dd><p>The folder to output logs and SQL files to</p></dd>
+        <dd><p>The folder to output logs, SQL files, and JSON results file to</p></dd>
 
 
 <dt>outputFile</dt>
@@ -151,11 +160,12 @@
 
 
 <dt>verboseMode</dt>
-<dd><p>Boolean to determine if the console will show all execution steps. Default = FALSE</p></dd>
+        <dd><p>Boolean to determine if the console will show all execution steps. Default is FALSE</p></dd>
 
 
 <dt>writeToTable</dt>
-<dd><p>Boolean to indicate if the check results will be written to the dqdashboard_results table</p></dd>
+        <dd><p>Boolean to indicate if the check results will be written to the dqdashboard_results table in the
+            resultsDatabaseSchema. Default is TRUE</p></dd>
 
 
 <dt>writeTableName</dt>
@@ -163,12 +173,11 @@
 
 
 <dt>writeToCsv</dt>
-<dd><p>Boolean to indicate if the check results will be written to a csv file</p></dd>
+        <dd><p>Boolean to indicate if the check results will be written to a csv file. Default is FALSE</p></dd>
 
 
 <dt>csvFile</dt>
-<dd><p>(OPTIONAL) CSV file to write results
-in the resultsDatabaseSchema. Default is TRUE.</p></dd>
+        <dd><p>(OPTIONAL) CSV file to write results</p></dd>
 
 
 <dt>checkLevels</dt>
@@ -176,27 +185,35 @@ in the resultsDatabaseSchema. Default is TRUE.</p></dd>
 
 
 <dt>checkNames</dt>
-<dd><p>(OPTIONAL) Choose which check names to execute. Names can be found in inst/csv/OMOP_CDM_v[cdmVersion]_Check_Desciptions.csv. Note that "cdmTable", "cdmField" and "measureValueCompleteness" are always executed.</p></dd>
+        <dd><p>(OPTIONAL) Choose which check names to execute. Names can be found in
+            inst/csv/OMOP_CDM_v[cdmVersion]_Check_Descriptions.csv. Note that "cdmTable", "cdmField" and
+            "measureValueCompleteness" are always executed.</p></dd>
 
 
-<dt>cohortDefinitionId</dt>
-<dd><p>The cohort definition id for the cohort you wish to run the DQD on. The package assumes a standard OHDSI cohort table called 'Cohort' 
-with the fields cohort_definition_id and subject_id.</p></dd>
+        <dt>cohortDefinitionId</dt>
+        <dd><p>The cohort definition id for the cohort you wish to run the DQD on. The package assumes a standard OHDSI
+            cohort table
+            with the fields cohort_definition_id and subject_id.</p></dd>
 
 
-<dt>cohortDatabaseSchema</dt>
-<dd><p>The schema where the cohort table is located.</p></dd>
+        <dt>cohortDatabaseSchema</dt>
+        <dd><p>The schema where the cohort table is located.</p></dd>
 
 
-<dt>tablesToExclude</dt>
-<dd><p>(OPTIONAL) Choose which CDM tables to exclude from the execution.</p></dd>
+        <dt>cohortTableName</dt>
+        <dd><p>The name of the cohort table. Defaults to `cohort`.</p></dd>
 
 
-<dt>cdmVersion</dt>
-<dd><p>The CDM version to target for the data source. Options are "5.2", "5.3", or "5.4". By default, "5.3" is used.</p></dd>
+        <dt>tablesToExclude</dt>
+        <dd><p>(OPTIONAL) Choose which CDM tables to exclude from the execution.</p></dd>
 
 
-<dt>tableCheckThresholdLoc</dt>
+        <dt>cdmVersion</dt>
+        <dd><p>The CDM version to target for the data source. Options are "5.2", "5.3", or "5.4". By default, "5.3" is
+            used.</p></dd>
+
+
+        <dt>tableCheckThresholdLoc</dt>
 <dd><p>The location of the threshold file for evaluating the table checks. If not specified the default thresholds will be applied.</p></dd>
 
 
@@ -222,13 +239,17 @@ with the fields cohort_definition_id and subject_id.</p></dd>
 </div>
 
 
-      <footer><div class="copyright">
-  <p></p><p>Developed by Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank DeFalco, Pavel Grafkin.</p>
-</div>
+      <footer>
+          <div class="copyright">
+              <p></p>
+              <p>Developed by Katy Sadowski, Clair Blacketer, Ajit Londhe, Anthony Sena, Anthony Molinaro, Frank
+                  DeFalco, Pavel Grafkin.</p>
+          </div>
 
-<div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
-</div>
+          <div class="pkgdown">
+              <p></p>
+              <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+          </div>
 
       </footer></div>
 

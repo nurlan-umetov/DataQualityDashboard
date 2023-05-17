@@ -57,26 +57,29 @@
   <url>
     <loc>/authors.html</loc>
   </url>
-  <url>
-    <loc>/check_statuses.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dot-evaluateThresholds.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dot-getCheckId.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dot-processCheck.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dot-recordResult.html</loc>
+    <url>
+        <loc>/check_statuses.html</loc>
+    </url>
+    <url>
+        <loc>/index.html</loc>
+    </url>
+    <url>
+        <loc>/news/index.html</loc>
+    </url>
+    <url>
+        <loc>/pull_request_template.html</loc>
+    </url>
+    <url>
+        <loc>/reference/dot-evaluateThresholds.html</loc>
+    </url>
+    <url>
+        <loc>/reference/dot-getCheckId.html</loc>
+    </url>
+    <url>
+        <loc>/reference/dot-processCheck.html</loc>
+    </url>
+    <url>
+        <loc>/reference/dot-recordResult.html</loc>
   </url>
   <url>
     <loc>/reference/dot-runCheck.html</loc>
