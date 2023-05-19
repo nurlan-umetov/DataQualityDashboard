@@ -13,7 +13,9 @@ import org.rosuda.REngine.Rserve.RConnection;
 
 import java.util.List;
 
-import static com.arcadia.DataQualityDashboard.util.DbTypeAdapter.*;
+import static com.arcadia.DataQualityDashboard.util.DbTypeAdapter.adaptDataBaseSchema;
+import static com.arcadia.DataQualityDashboard.util.DbTypeAdapter.adaptDbType;
+import static com.arcadia.DataQualityDashboard.util.DbTypeAdapter.adaptServer;
 import static com.arcadia.DataQualityDashboard.util.RConnectionWrapperUtil.createDataQualityCheckCommand;
 import static java.lang.String.format;
 
@@ -41,6 +43,11 @@ public class RConnectionWrapperImpl implements RConnectionWrapper {
     @Override
     @SneakyThrows
     public void loadScripts(List<String> scriptsPaths) {
+        String cmdStringr = "library('stringr')";
+        rConnection.parseAndEval(toTryCmd(cmdStringr));
+        String cmdDataQualityDashboard = "library('DataQualityDashboard')";
+        rConnection.parseAndEval(toTryCmd(cmdDataQualityDashboard));
+
         for (String path : scriptsPaths) {
             loadScript(path);
         }

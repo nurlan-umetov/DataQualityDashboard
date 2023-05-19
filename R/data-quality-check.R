@@ -1,6 +1,9 @@
 library(DatabaseConnector)
 library(SqlRender)
 library(magrittr)
+library(remotes)
+
+remotes::install_github("https://github.com/OHDSI/DataQualityDashboard", subdir = "R")
 
 
 dataQualityCheck <- function(cdm_dataType,
@@ -24,19 +27,26 @@ dataQualityCheck <- function(cdm_dataType,
 
   Sys.setenv('DATABASECONNECTOR_JAR_FOLDER' = '~/jdbcDrivers')
 
-  if(cdm_dataType == "databricks") {
+  if (cdm_dataType == "databricks") {
     connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = "spark",
-                                                 connectionString = sprintf("jdbc:spark://%s:%s/default;transportMode=http;ssl=1;httpPath=%s;AuthMech=3;UseNativeQuery=1;", cdm_server, cdm_port, httppath),
-                                                 user = "token",
-                                                 password = cdm_password)
+                                                                    connectionString = sprintf("jdbc:spark://%s:%s/default;transportMode=http;ssl=1;httpPath=%s;AuthMech=3;UseNativeQuery=1;", cdm_server, cdm_port, httppath),
+                                                                    user = "token",
+                                                                    password = cdm_password)
+  }
+  else if (cdm_dataType == "azure") {
+    connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = "sql server",
+                                                                    connectionString = sprintf("jdbc:sqlserver://%s:%s;database=%s", cdm_server, cdm_port, cdm_dataBaseSchema),
+                                                                    user = cdm_user,
+                                                                    password = cdm_password,
+    )
   }
   else {
-  connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = cdm_dataType,
-                                                                  user = cdm_user,
-                                                                  password = cdm_password,
-                                                                  server = cdm_server,
-                                                                  port = cdm_port,
-                                                                  extraSettings = "")
+    connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = cdm_dataType,
+                                                                    user = cdm_user,
+                                                                    password = cdm_password,
+                                                                    server = cdm_server,
+                                                                    port = cdm_port,
+                                                                    extraSettings = "")
   }
   resultsDatabaseSchema <- "" # the fully qualified database schema name of the results schema (that you can write to)
 
@@ -80,6 +90,7 @@ dataQualityCheck <- function(cdm_dataType,
                             verboseMode = verboseMode,
                             writeToTable = writeToTable,
                             checkLevels = checkLevels,
+                            cdmVersion = "5.3",
                             checkNames = checkNames)
   jsonResult <- jsonlite::toJSON(result)
   print("Data Quality Check process finished!")

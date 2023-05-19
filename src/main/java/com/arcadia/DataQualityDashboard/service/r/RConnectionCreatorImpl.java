@@ -38,7 +38,8 @@ public class RConnectionCreatorImpl implements RConnectionCreator {
             "~/R/summarizeResults.R",
             "~/R/writeJsonResultsTo.R",
             "~/R/writeResultsTo.R",
-            "~/R/readThresholdFile.R"
+            "~/R/readThresholdFile.R",
+            "~/R/constants.R"
     );
 
     @Getter
