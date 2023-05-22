@@ -1,10 +1,6 @@
 library(DatabaseConnector)
 library(SqlRender)
 library(magrittr)
-library(remotes)
-
-remotes::install_github("https://github.com/OHDSI/DataQualityDashboard", subdir = "R")
-
 
 dataQualityCheck <- function(cdm_dataType,
                              cdm_server,
@@ -34,11 +30,17 @@ dataQualityCheck <- function(cdm_dataType,
                                                                     password = cdm_password)
   }
   else if (cdm_dataType == "azure") {
-    connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = "sql server",
+
+
+    cdm_dataType <- "sql server"
+
+    connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = cdm_dataType,
                                                                     connectionString = sprintf("jdbc:sqlserver://%s:%s;database=%s", cdm_server, cdm_port, cdm_dataBaseSchema),
                                                                     user = cdm_user,
-                                                                    password = cdm_password,
+                                                                    password = cdm_password
     )
+
+
   }
   else {
     connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = cdm_dataType,
