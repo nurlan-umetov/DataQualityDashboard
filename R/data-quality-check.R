@@ -30,12 +30,14 @@ dataQualityCheck <- function(cdm_dataType,
                                                                     password = cdm_password)
   }
   else if (cdm_dataType == "azure") {
-
-
     cdm_dataType <- "sql server"
 
+    parsed_database <- strsplit(cdm_dataBaseSchema, ".", fixed = TRUE)[[1]][1]
+
+    cdm_dataBaseSchema <- strsplit(cdm_dataBaseSchema, ".", fixed = TRUE)[[1]][2]
+
     connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = cdm_dataType,
-                                                                    connectionString = sprintf("jdbc:sqlserver://%s:%s;database=%s", cdm_server, cdm_port, cdm_dataBaseSchema),
+                                                                    connectionString = sprintf("jdbc:sqlserver://%s:%s;database=%s", cdm_server, cdm_port, parsed_database),
                                                                     user = cdm_user,
                                                                     password = cdm_password
     )
