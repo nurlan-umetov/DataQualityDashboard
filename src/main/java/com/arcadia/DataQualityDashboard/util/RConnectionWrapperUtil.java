@@ -23,7 +23,7 @@ public class RConnectionWrapperUtil {
                 "cdm_dataType = \"" + cdmDbType + "\", " +
                 "cdm_server = \"" + cdmServer + "\", " +
                 "cdm_port = " + dbSettings.getPort() + ", " +
-                "cdm_dataBaseSchema = \"" + (cdmDbType.equals("azure") ? dbSettings.getDatabase() : cdmSchema) + "\", " +
+                "cdm_dataBaseSchema = \"" + (cdmDbType.equals("azure") ? dqdDatabaseProperties.getDatabase() : cdmSchema) + "\", " +
                 "cdm_user = \"" + dbSettings.getUser() + "\", " +
                 "cdm_password = \"" + dbSettings.getPassword() + "\", " +
                 "scanId = " + scan.getId() + ", " +
