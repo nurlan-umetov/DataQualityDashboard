@@ -9,7 +9,7 @@ testConnection <- function(dataType, server, port, dataBaseSchema, user, passwor
   }
   else if (dataType == "azure") {
     dataType <- "sql server"
-    parsed_database <- strsplit(cdm_dataBaseSchema, ".", fixed = TRUE)[[1]][1]
+    parsed_database <- strsplit(dataBaseSchema, ".", fixed = TRUE)[[1]][1]
     connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dataType,
                                                                     connectionString = sprintf("jdbc:sqlserver://%s:%s;database=%s;user=%s@%s;password=%s;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", server, port, parsed_database, user, parsed_database, password),
                                                                     user = user,
