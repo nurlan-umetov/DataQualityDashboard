@@ -45,6 +45,8 @@ public class RConnectionWrapperImpl implements RConnectionWrapper {
     public void loadScripts(List<String> scriptsPaths) {
         String cmdStringr = "library('stringr')";
         rConnection.parseAndEval(toTryCmd(cmdStringr));
+        String cmdReadr = "library('readr')";
+        rConnection.parseAndEval(toTryCmd(cmdReadr));
         String cmdDataQualityDashboard = "library('DataQualityDashboard')";
         rConnection.parseAndEval(toTryCmd(cmdDataQualityDashboard));
 

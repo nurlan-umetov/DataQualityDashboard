@@ -37,7 +37,7 @@ dataQualityCheck <- function(cdm_dataType,
     cdm_dataBaseSchema <- strsplit(cdm_dataBaseSchema, ".", fixed = TRUE)[[1]][2]
 
     connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = cdm_dataType,
-                                                                    connectionString = sprintf("jdbc:sqlserver://%s:%s;database=%s", cdm_server, cdm_port, parsed_database),
+                                                                    connectionString = sprintf("jdbc:sqlserver://%s:%s;database=%s;user=%s@%s;password=%s;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", cdm_server, cdm_port, parsed_database, cdm_user, parsed_database, cdm_password),
                                                                     user = cdm_user,
                                                                     password = cdm_password
     )
@@ -75,15 +75,7 @@ dataQualityCheck <- function(cdm_dataType,
   # which DQ checks to run? ------------------------------------
   checkNames <- c() # Names can be found in inst/csv/OMOP_CDM_v5.3.1_Check_Desciptions.csv
 
-  print("Creating databae manager...")
-  dqdDataBaseManager <- createDqdDatabaseManager(scanId = scanId,
-                                                 dataType = dqd_dataType,
-                                                 server = dqd_server,
-                                                 port = dqd_port,
-                                                 schema = dqd_dataBaseSchema,
-                                                 dbUsername = dqd_user,
-                                                 password = dqd_password)
-
+  print("Data Quality Check process started!")
   result <- executeDqChecks(connectionDetails = connectionDetails,
                             cdmDatabaseSchema = cdm_dataBaseSchema,
                             resultsDatabaseSchema = resultsDatabaseSchema,
