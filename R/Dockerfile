@@ -38,6 +38,7 @@ COPY data-quality-check.R root/R/data-quality-check.R
 COPY download-jdbc-drivers.R root/R/download-jdbc-drivers.R
 COPY log-appender.R root/R/log-appender.R
 COPY test-connection.R root/R/test-connection.R
+COPY start-dqd-check.R root/R/start-dqd-check.R
 
 # Enable tls 1.0, 1.1
 COPY java-secure java-secure

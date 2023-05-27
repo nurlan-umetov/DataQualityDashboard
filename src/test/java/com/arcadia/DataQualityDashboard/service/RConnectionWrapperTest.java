@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RConnectionWrapperTest {
-    RConnectionCreatorImpl connectionCreator = new RConnectionCreatorImpl(rServerProperties, dqdDatabaseProperties);
+    RConnectionCreatorImpl connectionCreator = new RConnectionCreatorImpl(rServerProperties, dqdDatabaseProperties, null);
 
     @BeforeEach
     void setUp() {

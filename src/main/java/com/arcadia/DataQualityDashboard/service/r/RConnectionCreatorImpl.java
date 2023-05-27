@@ -2,6 +2,7 @@ package com.arcadia.DataQualityDashboard.service.r;
 
 import com.arcadia.DataQualityDashboard.config.DqdDatabaseProperties;
 import com.arcadia.DataQualityDashboard.config.RServeProperties;
+import com.arcadia.DataQualityDashboard.repository.DataQualityLogRepository;
 import com.arcadia.DataQualityDashboard.service.error.RException;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -48,14 +49,17 @@ public class RConnectionCreatorImpl implements RConnectionCreator {
 
     private final DqdDatabaseProperties dqdDatabaseProperties;
 
+    private final DataQualityLogRepository dataQualityLogRepository;
+
     @Autowired
-    public RConnectionCreatorImpl(RServeProperties properties, DqdDatabaseProperties dqdDatabaseProperties) {
+    public RConnectionCreatorImpl(RServeProperties properties, DqdDatabaseProperties dqdDatabaseProperties, DataQualityLogRepository dataQualityLogRepository) {
         exeFilePath = properties.getPath();
         host = properties.getHost();
         port = properties.getPort();
         isUnix = properties.isUnix();
         currentPort = new AtomicInteger(port);
         this.dqdDatabaseProperties = dqdDatabaseProperties;
+        this.dataQualityLogRepository = dataQualityLogRepository;
     }
 
     /* Multithreading
@@ -75,7 +79,7 @@ public class RConnectionCreatorImpl implements RConnectionCreator {
                 connection = new RConnection(host, port);
             }
             try {
-                RConnectionWrapper connectionWrapper = new RConnectionWrapperImpl(connection, isUnix, dqdDatabaseProperties);
+                RConnectionWrapper connectionWrapper = new RConnectionWrapperImpl(connection, isUnix, dqdDatabaseProperties, dataQualityLogRepository);
                 if (!isUnix) {
                     connectionWrapper.loadScript(downloadJdbcDriversScript);
                 }

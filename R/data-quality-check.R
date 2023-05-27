@@ -75,7 +75,7 @@ dataQualityCheck <- function(cdm_dataType,
   # which DQ checks to run? ------------------------------------
   checkNames <- c() # Names can be found in inst/csv/OMOP_CDM_v5.3.1_Check_Desciptions.csv
 
-  print("Data Quality Check process started!")
+  print("Execution started")
   result <- executeDqChecks(connectionDetails = connectionDetails,
                             cdmDatabaseSchema = cdm_dataBaseSchema,
                             resultsDatabaseSchema = resultsDatabaseSchema,
@@ -90,6 +90,9 @@ dataQualityCheck <- function(cdm_dataType,
                             checkNames = checkNames)
   jsonResult <- jsonlite::toJSON(result)
   print("Data Quality Check process finished!")
+
+  print(jsonResult)
+  print("end of json")
 
   return(jsonResult)
 }
