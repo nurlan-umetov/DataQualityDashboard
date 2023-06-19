@@ -7,7 +7,7 @@ server:
 
 rserve:
   path:
-  host: r-serve
+  host: localhost
   port: 6311
   unix: true
 
