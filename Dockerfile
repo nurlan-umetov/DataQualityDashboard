@@ -1,9 +1,44 @@
-FROM r-base:4.1.3
+# 1st Build Step
+FROM openjdk:17 as build
+
+WORKDIR /workspace/app
+
+# Source
+COPY src src
+COPY inst/shinyApps/www/css src/main/resources/static/css
+COPY inst/shinyApps/www/htmlwidgets src/main/resources/static/htmlwidgets
+COPY inst/shinyApps/www/img src/main/resources/static/img
+COPY inst/shinyApps/www/js src/main/resources/static/js
+COPY inst/shinyApps/www/vendor src/main/resources/static/vendor
+COPY inst/shinyApps/www/favicon.ico src/main/resources/static/favicon.ico
+COPY inst/shinyApps/www/index.html src/main/resources/static/index.html
+
+# Maven
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+
+RUN chmod +x mvnw && ./mvnw package
+
+# 2nd Run Step
+FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-    && apt-get install -y apt-utils
+    && apt-get install -y openjdk-17-jdk openssh-server r-base \
+    && export ROOTPASS=$(head -c 12 /dev/urandom |base64 -) && echo "root:$ROOTPASS" | chpasswd
+
+COPY sshd_config /etc/ssh/
+
+VOLUME /tmp
+
+ARG JAR_FILE=/workspace/app/target/*.jar
+COPY --from=build /workspace/app/target/*.jar app.jar
+
+
+# asd
 RUN apt-get update \
-    && apt-get install -y default-jdk
+    && apt-get install -y apt-utils
 RUN apt-get update \
     && apt-get install -y libxml2-dev
 
@@ -17,7 +52,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends openssh-server \
     && export ROOTPASS=$(head -c 12 /dev/urandom |base64 -) && echo "root:$ROOTPASS" | chpasswd
 
-COPY R/sshd_config /etc/ssh/
+COPY sshd_config /etc/ssh/
 
 RUN R -e "install.packages('SqlRender')"
 RUN R -e "install.packages('ParallelLogger')"
@@ -48,51 +83,8 @@ RUN ./java-secure
 COPY R/entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
 
-EXPOSE 6311 2222
-
 CMD ["./entrypoint.sh"]
 
-
-# 1st Build Step
-FROM openjdk:17-alpine as build
-
-WORKDIR /workspace/app
-
-# Source
-COPY src src
-COPY inst/shinyApps/www/css src/main/resources/static/css
-COPY inst/shinyApps/www/htmlwidgets src/main/resources/static/htmlwidgets
-COPY inst/shinyApps/www/img src/main/resources/static/img
-COPY inst/shinyApps/www/js src/main/resources/static/js
-COPY inst/shinyApps/www/vendor src/main/resources/static/vendor
-COPY inst/shinyApps/www/favicon.ico src/main/resources/static/favicon.ico
-COPY inst/shinyApps/www/index.html src/main/resources/static/index.html
-
-# Maven
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
-
-
-RUN tr -d '\015' <./mvnw >./mvnw.sh && mv ./mvnw.sh ./mvnw && chmod 770 mvnw
-
-RUN ./mvnw package
-
-# 2nd Run Step
-FROM openjdk:17-alpine
-
-RUN apk update \
-    && apk add openssh-server \
-    && export ROOTPASS=$(head -c 12 /dev/urandom |base64 -) && echo "root:$ROOTPASS" | chpasswd
-
-COPY sshd_config /etc/ssh/
-
-VOLUME /tmp
-
-ARG JAR_FILE=/workspace/app/target/*.jar
-COPY --from=build ${JAR_FILE} app.jar
-
-EXPOSE 8001
+EXPOSE 6311 2222 8001
 
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app.jar ${0} ${@}"]
-
