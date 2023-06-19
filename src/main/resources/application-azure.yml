@@ -7,7 +7,7 @@ server:
 
 rserve:
   path:
-  host: ${RservHost}
+  host: localhost
   port: ${RservPort}
   unix: true
 
