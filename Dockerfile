@@ -83,8 +83,6 @@ RUN ./java-secure
 COPY R/entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
 
-CMD ["./entrypoint.sh"]
-
 EXPOSE 6311 2222 8001
 
-ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app.jar ${0} ${@}"]
+ENTRYPOINT ["sh", "-c", "./entrypoint.sh& java ${JAVA_OPTS} -jar /app.jar ${0} ${@}"]
