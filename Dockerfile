@@ -40,6 +40,8 @@ COPY --from=build /workspace/app/target/*.jar app.jar
 RUN apt-get update \
     && apt-get install -y apt-utils
 RUN apt-get update \
+    && apt-get install -y default-jdk
+RUN apt-get update \
     && apt-get install -y libxml2-dev
 
 RUN apt-get update && apt-get install -y git
@@ -53,16 +55,6 @@ RUN apt-get update \
     && export ROOTPASS=$(head -c 12 /dev/urandom |base64 -) && echo "root:$ROOTPASS" | chpasswd
 
 COPY sshd_config /etc/ssh/
-
-RUN R -e "install.packages('SqlRender')"
-RUN R -e "install.packages('ParallelLogger')"
-RUN R -e "install.packages('stringr')"
-RUN R -e "install.packages('devtools')"
-RUN R -e "remotes::install_github('OHDSI/DatabaseConnector')"
-RUN R -e "remotes::install_github('https://github.com/OHDSI/DataQualityDashboard/R')"
-RUN R -e "remotes::install_github('OHDSI/DataQualityDashboard')"
-RUN R -e "install.packages('Rserve',, 'http://rforge.net/', type='source')"
-RUN R -e "install.packages('magrittr')"
 
 VOLUME /rserve
 
@@ -82,6 +74,16 @@ RUN ./java-secure
 
 COPY R/entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
+
+RUN R -e "install.packages('SqlRender')"
+RUN R -e "install.packages('ParallelLogger')"
+RUN R -e "install.packages('stringr')"
+RUN R -e "install.packages('devtools')"
+RUN R -e "remotes::install_github('OHDSI/DatabaseConnector')"
+RUN R -e "remotes::install_github('https://github.com/OHDSI/DataQualityDashboard/R')"
+RUN R -e "remotes::install_github('OHDSI/DataQualityDashboard')"
+RUN R -e "install.packages('Rserve',, 'http://rforge.net/', type='source')"
+RUN R -e "install.packages('magrittr')"
 
 EXPOSE 6311 2222 8001
 
