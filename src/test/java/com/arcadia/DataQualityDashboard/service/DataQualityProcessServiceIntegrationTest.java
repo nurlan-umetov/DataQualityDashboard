@@ -61,7 +61,8 @@ class DataQualityProcessServiceIntegrationTest {
         dataQualityProcessService = new DataQualityProcessServiceImpl(
                 rConnectionCreator,
                 resultService,
-                filesManagerService
+                filesManagerService,
+                null
         );
     }
 
